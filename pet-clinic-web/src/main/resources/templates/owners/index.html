@@ -5,6 +5,25 @@
     <title>List of Owners</title>
 </head>
 <body>
-<h1 th:text="'List of Owners Processed'">List of Owners...</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+    </tr>
+    <tr>
+        <th>First Name</th>
+    </tr>
+    <tr>
+        <th>LAst Name</th>
+    </tr>
+    <tbody>
+    <tr th:each="owner: ${owners} ">
+        <td th:text="${owner?.id}">1</td>
+        <td th:text="${owner?.firstName}">1</td>
+        <td th:text="${owner?.lastName}">1</td>
+    </tr>
+    </tbody>
+    </thead>
+</table>
 </body>
 </html>
