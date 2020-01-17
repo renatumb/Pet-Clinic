@@ -5,7 +5,6 @@ import com.rbonfim.petclinic.service.VetService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
 @Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
@@ -21,7 +20,7 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
 
     @Override
     public Vet save(Vet obj) {
-        return super.save(obj.getId(), obj);
+        return super.save(obj);
     }
 
     @Override
