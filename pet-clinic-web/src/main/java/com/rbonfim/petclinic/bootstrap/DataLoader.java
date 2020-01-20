@@ -1,11 +1,9 @@
 package com.rbonfim.petclinic.bootstrap;
 
-import com.rbonfim.petclinic.model.Owner;
-import com.rbonfim.petclinic.model.Pet;
-import com.rbonfim.petclinic.model.PetType;
-import com.rbonfim.petclinic.model.Vet;
+import com.rbonfim.petclinic.model.*;
 import com.rbonfim.petclinic.service.OwnerService;
 import com.rbonfim.petclinic.service.PetTypeService;
+import com.rbonfim.petclinic.service.SpecialityService;
 import com.rbonfim.petclinic.service.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -19,16 +17,23 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final SpecialityService specialityService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.specialityService = specialityService;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
+        lodaData();
+    }
+
+    private void lodaData() {
         PetType petType001 = new PetType();
         petType001.setName("Dog");
         petTypeService.save(petType001);
@@ -62,16 +67,31 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(o1);
         ownerService.save(o2);
 
+        Speciality sp001 = new Speciality();
+        sp001.setDesciption("sp001");
+        specialityService.save(sp001);
+
+        Speciality sp002 = new Speciality();
+        sp001.setDesciption("sp002");
+        specialityService.save(sp002);
+
+        Speciality sp003 = new Speciality();
+        sp001.setDesciption("sp003");
+        specialityService.save(sp003);
+
+
         Vet v1 = new Vet();
         v1.setFirstName("Vet001First");
         v1.setLastName("Vet001Last");
+        v1.getSpecialities().add(sp001);
+        v1.getSpecialities().add(sp003);
 
         Vet v2 = new Vet();
         v2.setFirstName("Vet002First");
         v2.setLastName("Vet002Last");
+        v1.getSpecialities().add(sp002);
 
         vetService.save(v1);
         vetService.save(v2);
-
     }
 }
