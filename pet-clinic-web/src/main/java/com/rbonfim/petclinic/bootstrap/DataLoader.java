@@ -1,10 +1,7 @@
 package com.rbonfim.petclinic.bootstrap;
 
 import com.rbonfim.petclinic.model.*;
-import com.rbonfim.petclinic.service.OwnerService;
-import com.rbonfim.petclinic.service.PetTypeService;
-import com.rbonfim.petclinic.service.SpecialityService;
-import com.rbonfim.petclinic.service.VetService;
+import com.rbonfim.petclinic.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -18,13 +15,14 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
-
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -55,6 +53,8 @@ public class DataLoader implements CommandLineRunner {
         p1.setDob(LocalDate.now() );
         p1.setOwner(o1);
         o1.getPetSet().add(p1);
+
+
 
 
         Owner o2 = new Owner();
@@ -93,5 +93,11 @@ public class DataLoader implements CommandLineRunner {
 
         vetService.save(v1);
         vetService.save(v2);
+
+        Visit visit = new Visit();
+        visit.setDescription("description visit 001");
+        visit.setLocalDate( LocalDate.now() );
+        visit.setPet( p1);
+        visitService.save(visit);
     }
 }
