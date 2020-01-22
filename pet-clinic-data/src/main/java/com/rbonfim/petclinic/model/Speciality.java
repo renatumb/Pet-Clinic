@@ -1,7 +1,13 @@
 package com.rbonfim.petclinic.model;
 
-public class Speciality extends  BaseEntity {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table
+public class Speciality extends BaseEntity {
+    @Column(name = "desciption")
     private String desciption;
 
     public String getDesciption() {
