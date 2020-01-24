@@ -68,15 +68,15 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(o2);
 
         Speciality sp001 = new Speciality();
-        sp001.setDesciption("sp001");
+        sp001.setDescription("sp001");
         specialityService.save(sp001);
 
         Speciality sp002 = new Speciality();
-        sp001.setDesciption("sp002");
+        sp001.setDescription("sp002");
         specialityService.save(sp002);
 
         Speciality sp003 = new Speciality();
-        sp001.setDesciption("sp003");
+        sp001.setDescription("sp003");
         specialityService.save(sp003);
 
 
