@@ -7,7 +7,7 @@ import java.util.Set;
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     Set<Pet> petSet = new HashSet<>();
 
     @Column(name = "address")
