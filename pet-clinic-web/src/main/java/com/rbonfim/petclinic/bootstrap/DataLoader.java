@@ -60,9 +60,9 @@ public class DataLoader implements CommandLineRunner {
         Owner o2 = new Owner();
         o2.setFirstName("FirsNameOO2");
         o2.setLastName("LastNameOO2");
-        o1.setAddress("owner002 address 002");
-        o1.setTelephone("owner002 phone");
-        o1.setCity("owner002 city");
+        o2.setAddress("owner002 address 002");
+        o2.setTelephone("owner002 phone");
+        o2.setCity("owner002 city");
 
         ownerService.save(o1);
         ownerService.save(o2);
