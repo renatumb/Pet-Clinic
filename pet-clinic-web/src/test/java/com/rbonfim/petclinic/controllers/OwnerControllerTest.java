@@ -11,9 +11,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 import static org.hamcrest.Matchers.*;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -60,9 +62,7 @@ class OwnerControllerTest {
 
     @Test
     public void showOwner() throws Exception {
-
         when(ownerService.findById(22L)).thenReturn(Owner.builder().id(33L).build());
-
 
         mockMvc.perform(get("/owners/22"))
                 .andExpect(status().is2xxSuccessful())
@@ -70,5 +70,31 @@ class OwnerControllerTest {
                 .andExpect(model().attribute("owner", hasProperty("id", is(33L))))
         ;
 
+    }
+
+    @Test
+    void processFindFormReturnMany() throws Exception {
+        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(
+                Arrays.asList(Owner.builder().id(10L).build(),
+                        Owner.builder().id(20L).build(),
+                        Owner.builder().id(30L).build()));
+
+
+        mockMvc.perform(get("/owners"))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("selections"))
+                .andExpect(view().name("owners/ownerList"))
+        ;
+    }
+
+    @Test
+    void processFindFormReturnOne() throws Exception {
+        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(
+                Arrays.asList(Owner.builder().id(10L).build()));
+
+        mockMvc.perform(get("/owners"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/owners/10"))
+        ;
     }
 }
