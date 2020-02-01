@@ -33,9 +33,23 @@ public class Owner extends Person {
     @Builder
     public Owner(Long id, String firstName, String lastName, Set<Pet> petSet, String address, String city, String telephone) {
         super(id, firstName, lastName);
-        this.petSet = petSet;
         this.address = address;
         this.city = city;
         this.telephone = telephone;
+        if (petSet != null) {
+            this.petSet = petSet;
+        }
+    }
+
+    public Pet getPet(String name, boolean ignoreView) {
+
+        if (petSet.size() > 0) {
+            for (Pet p : petSet) {
+                if (p.getName().toLowerCase().equals(name.toLowerCase())) {
+                    return p;
+                }
+            }
+        }
+        return null;
     }
 }
