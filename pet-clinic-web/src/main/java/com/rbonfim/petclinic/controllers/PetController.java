@@ -64,11 +64,11 @@ public class PetController {
         }
         owner.getPetSet().add(pet);
         pet.setOwner(owner);
-        /*
+
         if (bindingResult.hasErrors()) {
             modelMap.addAttribute("pet", pet);
             return "pets/createOrUpdatePetForm";
-        }*/
+        }
 
         petService.save(pet);
         return "redirect:/owners/" + owner.getId();
