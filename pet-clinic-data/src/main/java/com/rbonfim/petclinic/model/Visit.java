@@ -1,6 +1,7 @@
 package com.rbonfim.petclinic.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,5 +23,6 @@ public class Visit extends BaseEntity {
     private Pet pet;
 
     @Column(name = "local_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate localDate;
 }
