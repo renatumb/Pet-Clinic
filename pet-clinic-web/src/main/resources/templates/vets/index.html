@@ -11,12 +11,19 @@
         <th>ID</th>
         <th>First Name</th>
         <th>LAst Name</th>
+        <th>Specialties</th>
     </tr>
     <tbody>
     <tr th:each="vv: ${vets} ">
         <td th:text="${vv?.id}">1</td>
         <td th:text="${vv?.firstName}">1</td>
         <td th:text="${vv?.lastName}">1</td>
+
+        <td>
+            <ul th:each="ss:${vv.specialities}">
+                <li><span th:text="${ss.description}"></span></li>
+            </ul>
+        </td>
     </tr>
     </tbody>
     </thead>

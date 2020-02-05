@@ -72,13 +72,25 @@ public class DataLoader implements CommandLineRunner {
         specialityService.save(sp001);
 
         Speciality sp002 = new Speciality();
-        sp001.setDescription("sp002");
+        sp002.setDescription("sp002");
         specialityService.save(sp002);
 
         Speciality sp003 = new Speciality();
-        sp001.setDescription("sp003");
+        sp003.setDescription("sp003");
         specialityService.save(sp003);
 
+
+        Speciality sp004 = new Speciality();
+        sp004.setDescription("sp004");
+        specialityService.save(sp004);
+
+        Speciality sp005 = new Speciality();
+        sp005.setDescription("sp005");
+        specialityService.save(sp005);
+
+        Speciality sp006 = new Speciality();
+        sp006.setDescription("sp006");
+        specialityService.save(sp006);
 
         Vet v1 = new Vet();
         v1.setFirstName("Vet001First");
@@ -89,7 +101,11 @@ public class DataLoader implements CommandLineRunner {
         Vet v2 = new Vet();
         v2.setFirstName("Vet002First");
         v2.setLastName("Vet002Last");
-        v1.getSpecialities().add(sp002);
+        v2.getSpecialities().add(sp002);
+
+        v2.getSpecialities().add(sp004);
+        v2.getSpecialities().add(sp005);
+        v2.getSpecialities().add(sp006);
 
         vetService.save(v1);
         vetService.save(v2);
